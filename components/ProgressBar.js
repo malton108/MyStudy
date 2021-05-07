@@ -7,20 +7,22 @@ import Bar from 'react-native-progress/Bar';
 const ProgressBar = ({progress}) => {
   return (
     <View style={styles.container}>
-      <Bar
-        animated
-        progress={progress}
-        color="#86AFB5"
-        borderColor="black"
-        style={styles.bar}></Bar>
+      <View style={styles.bar}>
+        <Bar
+          animated
+          progress={progress}
+          color="#86AFB5"
+          borderColor="black"
+          width={null}></Bar>
+      </View>
       <Text>{Math.round(progress * 100)}%</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  bar: {fontSize: 14},
-  container: {flexDirection: 'row'},
+  bar: {fontSize: 14, flexGrow: 1, margin: 10},
+  container: {flexDirection: 'row', alignItems: 'center'},
 });
 
 export default ProgressBar;

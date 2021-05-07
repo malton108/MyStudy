@@ -14,11 +14,10 @@ const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <View style={{flex: 1, backgroundColor: 'red'}}>
+    <View style={{flex: 1}}>
       <NavigationContainer>
-        <SafeAreaView
-          style={{width: '100%', height: '100%', backgroundColor: 'red'}}>
-          <Stack.Navigator initialRootName={assignments}>
+        <SafeAreaView style={{width: '100%', height: '100%'}}>
+          <Stack.Navigator initialRootName="Assignments">
             <Stack.Screen name="Assignments" component={Assignments} />
           </Stack.Navigator>
         </SafeAreaView>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import {StyleSheet, View, Text, Button} from 'react-native';
+import {StyleSheet, View, Image, Button} from 'react-native';
 
 import AssignmentList from '../components/AssignmentList';
 
@@ -36,11 +36,14 @@ const Assignments = ({}) => {
     ].tasks[taskIndex].checked;
     setAssignments(newAssignments);
     storeData(newAssignments);
+    console.log(JSON.stringify(newAssignments));
   };
   return (
     <View style={styles.container}>
       <Image source={require('../assets/logo.png')} style={styles.logo}></Image>
-      <Button title="Add Deadline"></Button>
+      <View style={styles.button}>
+        <Button title="Add Deadline"></Button>
+      </View>
       <AssignmentList
         assignments={assignments}
         toggleTask={toggleTask}></AssignmentList>
@@ -67,8 +70,16 @@ const getData = async () => {
 };
 
 const styles = StyleSheet.create({
-  container: {width: '100%', height: '100%', backgroundColor: 'red'},
-  logo: {width: '90%'},
+  container: {width: '100%', height: '100%'},
+  logo: {
+    width: '90%',
+    height: undefined,
+    aspectRatio: 510 / 123,
+    alignSelf: 'center',
+  },
+  button: {
+    margin: 20,
+  },
 });
 
 export default Assignments;
