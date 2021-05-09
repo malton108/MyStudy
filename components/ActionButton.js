@@ -1,9 +1,8 @@
 import React from 'react';
-
 import {TouchableOpacity, StyleSheet} from 'react-native';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+// Action buttons used for adding/editing/deleting
 const ActionButton = ({onPress, icon, color}) => {
   return (
     <TouchableOpacity onPress={onPress}>

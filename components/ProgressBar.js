@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import Bar from 'react-native-progress/Bar';
 
+// The progress bar updates when a task is checked off in an assignment
 const ProgressBar = ({progress}) => {
   return (
     <View style={styles.container}>

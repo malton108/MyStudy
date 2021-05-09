@@ -3,9 +3,11 @@ import {StyleSheet, View, Image, Button, Alert} from 'react-native';
 import AssignmentList from '../components/AssignmentList';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// Assignments contains an assignment list full of assignments the user has created
 const Assignments = ({navigation}) => {
   const [assignments, setAssignments] = useState([]);
 
+  // Load the assignments with data
   const loadAssignments = async () => {
     const data = await getData();
     setAssignments(data);
@@ -16,11 +18,14 @@ const Assignments = ({navigation}) => {
     return navigation.addListener('focus', loadAssignments);
   }, []);
 
+  // Update the assignments list
   const updateAssignments = assignments => {
     setAssignments(assignments);
+    // Store the data in async storage
     storeData(assignments);
   };
 
+  // Create an alert to confirm if the user wants to delete an assignment
   const deleteAssignment = index => {
     Alert.alert(
       'Delete Assignment',
@@ -45,6 +50,7 @@ const Assignments = ({navigation}) => {
     );
   };
 
+  // Allow tasks to be checkable and uncheckable
   const toggleTask = (assignmentIndex, taskIndex) => {
     // New copies need to be created to not mutate state
     // Create a shallow copy of the assignment
@@ -66,12 +72,14 @@ const Assignments = ({navigation}) => {
     updateAssignments(newAssignments);
   };
 
+  // Show the logo, the add deadline button and the entire assignment list
   return (
     <View style={styles.container}>
       <Image source={require('../assets/logo.png')} style={styles.logo}></Image>
       <View style={styles.button}>
         <Button
           title="Add Deadline"
+          color="#86AFB5"
           onPress={() => {
             navigation.navigate('EditAssignment');
           }}></Button>
@@ -84,6 +92,7 @@ const Assignments = ({navigation}) => {
   );
 };
 
+// Using async storage to store the assignments created by the user
 const storeData = async value => {
   try {
     const jsonValue = JSON.stringify(value);
@@ -93,6 +102,7 @@ const storeData = async value => {
   }
 };
 
+// Get the data that is stored containing the assignments the user has created
 const getData = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('@assignments');

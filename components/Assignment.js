@@ -4,6 +4,7 @@ import ActionButton from './ActionButton';
 import CheckableItem from './CheckableItem';
 import ProgressBar from './ProgressBar';
 
+// An assignment contains the progress bar, checkable item and action button components
 const Assignment = ({
   title,
   deadline,
@@ -17,7 +18,9 @@ const Assignment = ({
     task.checked && doneTasks++;
   });
   const progress = doneTasks / tasks.length;
-
+  // Return the information of the assignment
+  // The assignment contains an edit button to edit the entire assignment and a delete button
+  // Tasks can be checked and unchecked to update the progress bar
   return (
     <View style={styles.container}>
       <View style={styles.heading}>

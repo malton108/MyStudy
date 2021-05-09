@@ -1,16 +1,31 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, FlatList, Button} from 'react-native';
+import {StyleSheet, View, Text, FlatList} from 'react-native';
 import Prompt from 'react-native-input-prompt';
 import ActionButton from './ActionButton';
 
-const TaskList = ({tasks, addTask}) => {
+// A task list contains all the tasks a user has added into an assignment
+// These tasks can also be deleted
+const TaskList = ({tasks, addTask, deleteTask}) => {
   const [promptVisible, setPromptVisible] = useState(false);
+  // Render the tasks name with a button to delete it
   const renderItem = ({item, index}) => {
-    return <Text key={index}>{item}</Text>;
+    return (
+      <View style={styles.row} key={index}>
+        <Text>{item.title}</Text>
+        <ActionButton
+          icon="trash"
+          onPress={() => {
+            deleteTask(index);
+          }}></ActionButton>
+      </View>
+    );
   };
+
   const addItem = () => {
     setPromptVisible(true);
   };
+
+  // Allow the user to add a new task or delete an existing one
   return (
     <View style={styles.container}>
       <Prompt
@@ -24,7 +39,7 @@ const TaskList = ({tasks, addTask}) => {
           setPromptVisible(false);
           addTask(text);
         }}></Prompt>
-      <View style={styles.heading}>
+      <View style={styles.row}>
         <Text style={styles.tasks}>Tasks</Text>
         <ActionButton icon="plus" onPress={addItem}></ActionButton>
       </View>
@@ -42,7 +57,7 @@ const styles = StyleSheet.create({
   text: {fontSize: 14},
   container: {width: '90%', flex: 1},
   tasks: {fontWeight: 'bold', fontSize: 16},
-  heading: {
+  row: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
