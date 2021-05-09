@@ -1,13 +1,11 @@
 import React from 'react';
-
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
-
 import CheckBox from '@react-native-community/checkbox';
 
 const CheckableItem = ({text, checked, toggleChecked}) => {
   return (
     <TouchableOpacity onPress={toggleChecked} style={styles.container}>
-      <CheckBox value={checked}></CheckBox>
+      <CheckBox value={checked} onValueChange={toggleChecked}></CheckBox>
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );

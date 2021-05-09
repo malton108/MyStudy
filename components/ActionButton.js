@@ -12,6 +12,6 @@ const ActionButton = ({onPress, icon, color}) => {
   );
 };
 
-const styles = StyleSheet.create({icon: {fontSize: 20}});
+const styles = StyleSheet.create({icon: {fontSize: 22, padding: 3}});
 
 export default ActionButton;

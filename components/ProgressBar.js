@@ -1,7 +1,5 @@
 import React from 'react';
-
 import {StyleSheet, View, Text} from 'react-native';
-
 import Bar from 'react-native-progress/Bar';
 
 const ProgressBar = ({progress}) => {
